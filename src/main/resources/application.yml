@@ -44,4 +44,10 @@ application:
   version: 1.0.0
   external-api:
     kakao:
-      url: https://dapi.kakao.com/v2/search/web
+      scheme: https
+      host: dapi.kakao.com
+      path: /v2/search/blog
+    naver:
+      scheme: https
+      host: openapi.naver.com
+      path: /v1/search/blog.json
