@@ -21,7 +21,7 @@ public class BlogSearchController {
 		this.blogSearchService = blogSearchService;
 	}
 
-	@Cacheable(value = "blogList", key = "#request", unless = "#result == null")
+	@Cacheable(value = "blogList", key = "#request")
 	@GetMapping("/blogs")
 	@ResponseStatus(HttpStatus.OK)
 	public BlogSearchResponse getResults(@Valid BlogSearchRequest request) {

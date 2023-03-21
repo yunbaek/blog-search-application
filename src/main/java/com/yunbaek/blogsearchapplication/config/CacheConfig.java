@@ -27,30 +27,39 @@ public class CacheConfig extends CachingConfigurerSupport {
 	public CacheManager cacheManager() {
 		SimpleCacheManager cacheManager = new SimpleCacheManager();
 
-		// 블로그 목록 캐시
-		ConcurrentMapCache blogListCache = new ConcurrentMapCache(BLOG_LIST_CACHE, Caffeine.newBuilder()
-			.expireAfterWrite(30, TimeUnit.SECONDS)
-			.maximumSize(500)
-			.build()
-			.asMap(), false);
+		/*
+		 블로그 목록 캐시
+		 30초 동안 캐시 유지
+		 500개까지 캐시 유지
+		 */
+		ConcurrentMapCache blogListCache = getConcurrentMapCache(BLOG_LIST_CACHE, 30, 500);
 
-		// 검색어 순위 캐시
-		ConcurrentMapCache keywordRankCache = new ConcurrentMapCache(KEYWORD_RANK_CACHE, Caffeine.newBuilder()
-			.expireAfterWrite(10, TimeUnit.SECONDS)
-			.maximumSize(1)
-			.build()
-			.asMap(), false);
+		/*
+		 검색어 랭킹 캐시
+		 10초 동안 캐시 유지
+		 1개까지 캐시 유지
+		 */
+		ConcurrentMapCache keywordRankCache = getConcurrentMapCache(KEYWORD_RANK_CACHE, 10, 1);
 
-		// 검색어 생성 캐시
-		ConcurrentMapCache keywordCreateCache = new ConcurrentMapCache(KEYWORD_INSERT_CACHE, Caffeine.newBuilder()
-			.expireAfterWrite(10, TimeUnit.SECONDS)
-			.maximumSize(10)
-			.build()
-			.asMap(), false);
+		/*
+		 검색어 생성 캐시
+		 10초 동안 캐시 유지
+		 10개까지 캐시 유지
+		 */
+		ConcurrentMapCache keywordCreateCache = getConcurrentMapCache(KEYWORD_INSERT_CACHE, 10, 10);
 
 		cacheManager.setCaches(List.of(blogListCache, keywordRankCache, keywordCreateCache));
 
 		return cacheManager;
+	}
+
+	private static ConcurrentMapCache getConcurrentMapCache(String keywordInsertCache, int durationSecond,
+		int maxSize) {
+		return new ConcurrentMapCache(keywordInsertCache, Caffeine.newBuilder()
+			.expireAfterWrite(durationSecond, TimeUnit.SECONDS)
+			.maximumSize(maxSize)
+			.build()
+			.asMap(), false);
 	}
 
 }
