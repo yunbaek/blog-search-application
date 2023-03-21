@@ -45,6 +45,9 @@ dependencies {
     implementation "org.mapstruct:mapstruct:1.4.2.Final"
     annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final"
 
+    // local cache
+    implementation 'com.github.ben-manes.caffeine:caffeine:3.0.0'
+
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
