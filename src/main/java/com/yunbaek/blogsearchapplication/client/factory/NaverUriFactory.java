@@ -14,7 +14,7 @@ public class NaverUriFactory implements UriFactory {
 
 	@Override
 	public URI uri(BlogSearchRequest request, UriBuilder builder) {
-
+		builder.queryParam(QUERY, request.getQuery());
 		builder.queryParam(SORT, request.getSort().getNaverSort());
 		builder.queryParam(START, getStart(request));
 		builder.queryParam(DISPLAY, request.getSize());

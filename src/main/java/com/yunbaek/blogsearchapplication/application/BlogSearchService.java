@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.yunbaek.blogsearchapplication.client.BlogSearchClient;
 import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
-import com.yunbaek.blogsearchapplication.client.dto.kakao.BlogSearchResult;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 
 @Service
 public class BlogSearchService {
@@ -17,7 +17,7 @@ public class BlogSearchService {
 		setNextClients();
 	}
 
-	public BlogSearchResult search(BlogSearchRequest request) {
+	public BlogSearchResponse search(BlogSearchRequest request) {
 		return clients.get(0).search(request);
 	}
 
