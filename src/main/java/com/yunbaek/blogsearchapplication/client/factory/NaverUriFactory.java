@@ -15,20 +15,10 @@ public class NaverUriFactory implements UriFactory {
 	@Override
 	public URI uri(BlogSearchRequest request, UriBuilder builder) {
 
-		if (request.getSort() != null) {
-			builder.queryParam(SORT, request.getSort().getNaverSort());
-		}
-		if (request.getPage() != null) {
-			int start = getStart(request);
-			builder.queryParam(START, start);
-		}
-		if (request.getSize() != null) {
-			builder.queryParam(DISPLAY, request.getSize());
-		}
-		return builder
-			.queryParam(QUERY, request.getQuery())
-			.build();
-
+		builder.queryParam(SORT, request.getSort().getNaverSort());
+		builder.queryParam(START, getStart(request));
+		builder.queryParam(DISPLAY, request.getSize());
+		return builder.build();
 	}
 
 	private static int getStart(BlogSearchRequest request) {
