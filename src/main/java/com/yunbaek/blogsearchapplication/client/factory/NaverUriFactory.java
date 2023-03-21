@@ -19,7 +19,8 @@ public class NaverUriFactory implements UriFactory {
 			builder.queryParam(SORT, request.getSort().getNaverSort());
 		}
 		if (request.getPage() != null) {
-			builder.queryParam(START, request.getPage());
+			int start = getStart(request);
+			builder.queryParam(START, start);
 		}
 		if (request.getSize() != null) {
 			builder.queryParam(DISPLAY, request.getSize());
@@ -28,5 +29,9 @@ public class NaverUriFactory implements UriFactory {
 			.queryParam(QUERY, request.getQuery())
 			.build();
 
+	}
+
+	private static int getStart(BlogSearchRequest request) {
+		return (request.getPage() - 1) * request.getSize() + 1;
 	}
 }
