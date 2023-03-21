@@ -21,9 +21,9 @@ public class BlogSearchRequest {
 
 	public BlogSearchRequest(String query, Sort sort, Integer page, Integer size) {
 		this.query = query;
-		this.sort = sort;
-		this.page = page;
-		this.size = size;
+		this.sort = sort == null ? Sort.ACCURACY : sort;
+		this.page = page == null ? 1 : page;
+		this.size = size == null ? 10 : size;
 	}
 }
 

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Item {
 
 	private String title;
-	private String link;
+	// private String link;
 	private String description;
 	private String bloggername;
 	private String bloggerlink;

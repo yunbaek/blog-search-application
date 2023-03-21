@@ -17,6 +17,8 @@ public class Document {
 	private String contents;
 	@JsonDeserialize(using = KakaoLocalDateTimeDeserializer.class)
 	private LocalDateTime datetime;
+
+	private String thumbnail;
 	private String title;
 	private String url;
 

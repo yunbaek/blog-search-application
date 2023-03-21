@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Meta {
 
-	private Integer totalCount;
+	private Long totalCount;
 
 	private Integer pageableCount;
 
