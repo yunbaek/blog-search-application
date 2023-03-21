@@ -47,7 +47,10 @@ application:
       scheme: https
       host: dapi.kakao.com
       path: /v2/search/blog
+      authorization: KakaoAK 7a06dbbb7157ea25c1b3a61102c9ce3f
     naver:
       scheme: https
       host: openapi.naver.com
       path: /v1/search/blog.json
+      client-id: vKZOlRasLvIzKr2fJPqO
+      client-secret: 6Oq3UjlVGH

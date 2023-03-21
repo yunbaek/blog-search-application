@@ -19,6 +19,7 @@ import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 @Order(1)
 public class KakaoBlogSearchClient extends AbstractBlogSearchClient {
 
+	private static final String AUTHORIZATION = "Authorization";
 	private final WebClient webClient;
 	private final UriFactory uriFactory = new KakaoUriFactory();
 	private final ResponseFromKakaoMapper mapper;
@@ -32,6 +33,9 @@ public class KakaoBlogSearchClient extends AbstractBlogSearchClient {
 	@Value("${application.external-api.kakao.path}")
 	private String path;
 
+	@Value("${application.external-api.kakao.authorization}")
+	private String kakaoAuthorization;
+
 	public KakaoBlogSearchClient(WebClient webClient, ResponseFromKakaoMapper mapper) {
 		this.webClient = webClient;
 		this.mapper = mapper;
@@ -41,9 +45,9 @@ public class KakaoBlogSearchClient extends AbstractBlogSearchClient {
 	public BlogSearchResponse handleSearch(BlogSearchRequest request) {
 		KakaoBlogSearchResult kakaoResult = webClient.get()
 			.uri(builder -> getUri(request, builder))
-			.header("Authorization", "KakaoAK 7a06dbbb7157ea25c1b3a61102c9ce3f")
+			.header(AUTHORIZATION, kakaoAuthorization)
 			.retrieve()
-			.onStatus(status -> status.is4xxClientError() || status.is5xxServerError() || status.is2xxSuccessful()
+			.onStatus(status -> status.is4xxClientError() || status.is5xxServerError()
 				, clientResponse ->
 					clientResponse.bodyToMono(String.class)
 						.map(IllegalArgumentException::new))

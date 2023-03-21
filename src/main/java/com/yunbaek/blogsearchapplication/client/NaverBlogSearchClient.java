@@ -19,6 +19,8 @@ import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 @Order(2)
 public class NaverBlogSearchClient extends AbstractBlogSearchClient {
 
+	private static final String NAVER_CLIENT_ID = "X-Naver-Client-Id";
+	private static final String NAVER_CLIENT_SECRET = "X-Naver-Client-Secret";
 	private final WebClient webClient;
 	private final ResponseFromNaverMapper mapper;
 	private final UriFactory uriFactory = new NaverUriFactory();
@@ -32,6 +34,12 @@ public class NaverBlogSearchClient extends AbstractBlogSearchClient {
 	@Value("${application.external-api.naver.path}")
 	private String path;
 
+	@Value("${application.external-api.naver.client-id}")
+	private String clientId;
+
+	@Value("${application.external-api.naver.client-secret}")
+	private String clientSecret;
+
 	public NaverBlogSearchClient(WebClient webClient, ResponseFromNaverMapper mapper) {
 		this.webClient = webClient;
 		this.mapper = mapper;
@@ -41,8 +49,8 @@ public class NaverBlogSearchClient extends AbstractBlogSearchClient {
 	public BlogSearchResponse handleSearch(BlogSearchRequest request) {
 		NaverBlogSearchResult searchResult = webClient.get()
 			.uri(builder -> getUri(request, builder))
-			.header("X-Naver-Client-Id", "vKZOlRasLvIzKr2fJPqO")
-			.header("X-Naver-Client-Secret", "6Oq3UjlVGH")
+			.header(NAVER_CLIENT_ID, clientId)
+			.header(NAVER_CLIENT_SECRET, clientSecret)
 			.retrieve()
 			.bodyToMono(NaverBlogSearchResult.class)
 			.block();
