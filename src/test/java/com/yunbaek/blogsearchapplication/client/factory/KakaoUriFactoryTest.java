@@ -27,7 +27,7 @@ class KakaoUriFactoryTest {
 	void allSearchParameterTest() {
 		// given
 		BlogSearchRequest request = new BlogSearchRequest("query", Sort.ACCURACY, 1, 1);
-		URI expectedUri = URI.create("https://example.com?sort=accuracy&page=1&size=1&query=query");
+		URI expectedUri = URI.create("https://example.com?query=query&sort=accuracy&page=1&size=1");
 
 		// when
 		URI uri = new KakaoUriFactory().uri(request, uriComponentsBuilder);
@@ -41,7 +41,7 @@ class KakaoUriFactoryTest {
 	void accuracySortParameterTest() {
 		// given
 		BlogSearchRequest request = new BlogSearchRequest("query", Sort.ACCURACY, 1, 1);
-		URI expectedUri = URI.create("https://example.com?sort=accuracy&page=1&size=1&query=query");
+		URI expectedUri = URI.create("https://example.com?query=query&sort=accuracy&page=1&size=1");
 
 		// when
 		URI uri = new KakaoUriFactory().uri(request, uriComponentsBuilder);
@@ -55,7 +55,7 @@ class KakaoUriFactoryTest {
 	void recencySortParameterTest() {
 		// given
 		BlogSearchRequest request = new BlogSearchRequest("query", Sort.RECENCY, 1, 1);
-		URI expectedUri = URI.create("https://example.com?sort=recency&page=1&size=1&query=query");
+		URI expectedUri = URI.create("https://example.com?query=query&sort=recency&page=1&size=1");
 
 		// when
 		URI uri = new KakaoUriFactory().uri(request, uriComponentsBuilder);
@@ -64,12 +64,12 @@ class KakaoUriFactoryTest {
 		assertThat(uri).isEqualTo(expectedUri);
 	}
 
-	@DisplayName("정렬 조건이 없으면 정렬 조건 없이 URI를 생성한다.")
+	@DisplayName("정렬 조건이 없으면 accuracy로 생성한다.")
 	@Test
 	void noSortParameterTest() {
 		// given
 		BlogSearchRequest request = new BlogSearchRequest("query", null, 1, 1);
-		URI expectedUri = URI.create("https://example.com?page=1&size=1&query=query");
+		URI expectedUri = URI.create("https://example.com?query=query&sort=accuracy&page=1&size=1");
 
 		// when
 		URI uri = new KakaoUriFactory().uri(request, uriComponentsBuilder);
@@ -78,12 +78,12 @@ class KakaoUriFactoryTest {
 		assertThat(uri).isEqualTo(expectedUri);
 	}
 
-	@DisplayName("페이지 조건이 없으면 페이지 조건 없이 URI를 생성한다.")
+	@DisplayName("페이지 조건이 없으면 페이지 조건의 기본값은 1이다")
 	@Test
 	void noPageParameterTest() {
 		// given
 		BlogSearchRequest request = new BlogSearchRequest("query", Sort.ACCURACY, null, 1);
-		URI expectedUri = URI.create("https://example.com?sort=accuracy&size=1&query=query");
+		URI expectedUri = URI.create("https://example.com?query=query&sort=accuracy&page=1&size=1");
 
 		// when
 		URI uri = new KakaoUriFactory().uri(request, uriComponentsBuilder);
@@ -92,12 +92,12 @@ class KakaoUriFactoryTest {
 		assertThat(uri).isEqualTo(expectedUri);
 	}
 
-	@DisplayName("페이지 크기 조건이 없으면 페이지 크기 조건 없이 URI를 생성한다.")
+	@DisplayName("페이지 크기 조건이 없으면 페이지 크기 조건의 기본값은 10이다.")
 	@Test
 	void noSizeParameterTest() {
 		// given
 		BlogSearchRequest request = new BlogSearchRequest("query", Sort.ACCURACY, 1, null);
-		URI expectedUri = URI.create("https://example.com?sort=accuracy&page=1&query=query");
+		URI expectedUri = URI.create("https://example.com?query=query&sort=accuracy&page=1&size=10");
 
 		// when
 		URI uri = new KakaoUriFactory().uri(request, uriComponentsBuilder);
@@ -106,12 +106,12 @@ class KakaoUriFactoryTest {
 		assertThat(uri).isEqualTo(expectedUri);
 	}
 
-	@DisplayName("검색어를 제외한 모든 조건이 없으면 검색어만 있는 URI를 생성한다.")
+	@DisplayName("기본값을 통해 검색")
 	@Test
 	void noSearchParameterTest() {
 		// given
 		BlogSearchRequest request = new BlogSearchRequest("query", null, null, null);
-		URI expectedUri = URI.create("https://example.com?query=query");
+		URI expectedUri = URI.create("https://example.com?query=query&sort=accuracy&page=1&size=10");
 
 		// when
 		URI uri = new KakaoUriFactory().uri(request, uriComponentsBuilder);

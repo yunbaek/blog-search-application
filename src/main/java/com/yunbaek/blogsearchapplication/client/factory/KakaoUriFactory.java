@@ -15,19 +15,10 @@ public class KakaoUriFactory implements UriFactory {
 
 	@Override
 	public URI uri(BlogSearchRequest request, UriBuilder builder) {
-
-		if (request.getSort() != null) {
-			builder.queryParam(SORT, request.getSort().getKakaoSort());
-		}
-		if (request.getPage() != null) {
-			builder.queryParam(PAGE, request.getPage());
-		}
-		if (request.getSize() != null) {
-			builder.queryParam(SIZE, request.getSize());
-		}
-		return builder
-			.queryParam(QUERY, request.getQuery())
-			.build();
-
+		builder.queryParam(QUERY, request.getQuery());
+		builder.queryParam(SORT, request.getSort().getKakaoSort());
+		builder.queryParam(PAGE, request.getPage());
+		builder.queryParam(SIZE, request.getSize());
+		return builder.build();
 	}
 }

@@ -1,13 +1,13 @@
 package com.yunbaek.blogsearchapplication.client;
 
 import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
-import com.yunbaek.blogsearchapplication.client.dto.kakao.BlogSearchResult;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 
 public abstract class AbstractBlogSearchClient implements BlogSearchClient {
 	private BlogSearchClient nextClient;
 
 	@Override
-	public BlogSearchResult search(BlogSearchRequest request) {
+	public BlogSearchResponse search(BlogSearchRequest request) {
 		try {
 			return handleSearch(request);
 		} catch (Exception e) {
@@ -20,7 +20,7 @@ public abstract class AbstractBlogSearchClient implements BlogSearchClient {
 		}
 	}
 
-	abstract BlogSearchResult handleSearch(BlogSearchRequest request);
+	abstract BlogSearchResponse handleSearch(BlogSearchRequest request);
 
 	@Override
 	public void setNextClient(BlogSearchClient nextClient) {

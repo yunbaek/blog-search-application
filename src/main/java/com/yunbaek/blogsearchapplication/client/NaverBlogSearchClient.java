@@ -9,17 +9,19 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriBuilder;
 
 import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
-import com.yunbaek.blogsearchapplication.client.dto.kakao.BlogSearchResult;
 import com.yunbaek.blogsearchapplication.client.dto.naver.NaverBlogSearchResult;
-import com.yunbaek.blogsearchapplication.client.factory.KakaoUriFactory;
+import com.yunbaek.blogsearchapplication.client.factory.NaverUriFactory;
 import com.yunbaek.blogsearchapplication.client.factory.UriFactory;
+import com.yunbaek.blogsearchapplication.client.mapper.ResponseFromNaverMapper;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 
 @Service
 @Order(2)
 public class NaverBlogSearchClient extends AbstractBlogSearchClient {
 
 	private final WebClient webClient;
-	private final UriFactory uriFactory = new KakaoUriFactory();
+	private final ResponseFromNaverMapper mapper;
+	private final UriFactory uriFactory = new NaverUriFactory();
 
 	@Value("${application.external-api.naver.scheme}")
 	private String scheme;
@@ -30,20 +32,22 @@ public class NaverBlogSearchClient extends AbstractBlogSearchClient {
 	@Value("${application.external-api.naver.path}")
 	private String path;
 
-	public NaverBlogSearchClient(WebClient webClient) {
+	public NaverBlogSearchClient(WebClient webClient, ResponseFromNaverMapper mapper) {
 		this.webClient = webClient;
+		this.mapper = mapper;
 	}
 
 	@Override
-	public BlogSearchResult handleSearch(BlogSearchRequest request) {
-		return webClient.get()
+	public BlogSearchResponse handleSearch(BlogSearchRequest request) {
+		NaverBlogSearchResult searchResult = webClient.get()
 			.uri(builder -> getUri(request, builder))
 			.header("X-Naver-Client-Id", "vKZOlRasLvIzKr2fJPqO")
 			.header("X-Naver-Client-Secret", "6Oq3UjlVGH")
 			.retrieve()
 			.bodyToMono(NaverBlogSearchResult.class)
-			.map(dto -> new BlogSearchResult(dto.getItems()))
 			.block();
+
+		return mapper.from(searchResult, request);
 	}
 
 	private URI getUri(BlogSearchRequest request, UriBuilder builder) {
