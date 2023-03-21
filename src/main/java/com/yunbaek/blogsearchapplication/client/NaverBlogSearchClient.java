@@ -52,6 +52,10 @@ public class NaverBlogSearchClient extends AbstractBlogSearchClient {
 			.header(NAVER_CLIENT_ID, clientId)
 			.header(NAVER_CLIENT_SECRET, clientSecret)
 			.retrieve()
+			.onStatus(status -> status.is4xxClientError() || status.is5xxServerError()
+				, clientResponse ->
+					clientResponse.bodyToMono(String.class)
+						.map(IllegalArgumentException::new))
 			.bodyToMono(NaverBlogSearchResult.class)
 			.block();
 
