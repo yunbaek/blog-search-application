@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriBuilder;
 
-import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.client.dto.naver.NaverBlogSearchResult;
 import com.yunbaek.blogsearchapplication.client.factory.NaverUriFactory;
 import com.yunbaek.blogsearchapplication.client.factory.UriFactory;
 import com.yunbaek.blogsearchapplication.client.mapper.ResponseFromNaverMapper;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 
 @Service

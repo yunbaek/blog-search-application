@@ -4,7 +4,7 @@ import java.net.URI;
 
 import org.springframework.web.util.UriBuilder;
 
-import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchRequest;
 
 public class KakaoUriFactory implements UriFactory {
 

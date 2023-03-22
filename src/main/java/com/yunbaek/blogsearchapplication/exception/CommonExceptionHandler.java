@@ -25,13 +25,16 @@ public class CommonExceptionHandler {
 		log.error("Bad Request -- message : " + e.getMessage());
 
 		List<String> errors = e.getBindingResult().getFieldErrors()
-			.stream().map(FieldError::getDefaultMessage).collect(Collectors.toList());
+			.stream()
+			.map(FieldError::getDefaultMessage)
+			.collect(Collectors.toList());
 
 		ApiError error = ApiError.of(HttpStatus.BAD_REQUEST.value(), errors.toString());
 		return ResponseEntity.badRequest().body(error);
 	}
 
-	@ExceptionHandler({IllegalArgumentException.class, WebClientResponseException.class, WebClientRequestException.class})
+	@ExceptionHandler({IllegalArgumentException.class, WebClientResponseException.class,
+		WebClientRequestException.class})
 	public ResponseEntity<ApiError> handleDuplicateAndInvalidDataException(RuntimeException e) {
 		log.error("Bad Request -- message : " + e.getMessage());
 		ApiError error = ApiError.of(HttpStatus.BAD_REQUEST.value(), e.getMessage());

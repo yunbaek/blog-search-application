@@ -9,8 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.client.dto.Sort;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchRequest;
 
 @DisplayName("카카오 URI Factory 테스트")
 class KakaoUriFactoryTest {

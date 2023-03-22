@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriBuilder;
 
-import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.client.dto.kakao.KakaoBlogSearchResult;
 import com.yunbaek.blogsearchapplication.client.factory.KakaoUriFactory;
 import com.yunbaek.blogsearchapplication.client.factory.UriFactory;
 import com.yunbaek.blogsearchapplication.client.mapper.ResponseFromKakaoMapper;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 
 @Service
