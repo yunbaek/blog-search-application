@@ -26,7 +26,7 @@ public class HitCountService {
 		hitCountRepository.findByKeyword(keyword)
 			.ifPresentOrElse(
 				HitCount::increaseHitCount,
-				() -> hitCountRepository.saveAndFlush(HitCount.from(keyword))
+				() -> hitCountRepository.save(HitCount.from(keyword))
 			);
 	}
 
