@@ -34,7 +34,7 @@ $ ./gradlew clean build
 $ java -jar build/libs/blog-search-application-0.0.1-SNAPSHOT.jar
 ``` 
 - 혹은 첨부된 JAR 파일을 실행합니다.
-- [[다운로드]]()
+- [[다운로드]](https://drive.google.com/file/d/1fJnXJDkN-CDc1yqjD_HkOivCaRPfxgB5/view?usp=sharing)
 ```shell
 $ java -jar blog-search-application-0.0.1-SNAPSHOT.jar
 ```
