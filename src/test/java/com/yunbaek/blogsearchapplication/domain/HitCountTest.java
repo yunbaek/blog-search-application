@@ -27,11 +27,11 @@ class HitCountTest {
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@DisplayName("HitCount 의 초기 count 는 0 테스트")
+	@DisplayName("HitCount 의 초기 count 는 1 테스트")
 	@Test
 	void initialCountTest() {
 		HitCount hitCount = HitCount.from("test");
-		assertThat(hitCount.getCount()).isZero();
+		assertThat(hitCount.getCount()).isEqualTo(1L);
 	}
 
 }
