@@ -48,9 +48,13 @@ dependencies {
     // local cache
     implementation 'com.github.ben-manes.caffeine:caffeine:3.0.0'
 
+    // guava
+    implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
+
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'io.rest-assured:rest-assured:3.3.0'
 }
 
 tasks.named('test') {
