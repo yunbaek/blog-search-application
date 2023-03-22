@@ -22,6 +22,9 @@
 - [Caffeine](https://https://github.com/ben-manes/caffeine)
   - 로컬 캐싱을 위해 사용하였습니다.
   - version: 3.0.0
+- [Guava](https://github.com/google/guava)
+  - 문자 대소문자 변경을 위해 사용하였습니다.
+  - version: 31.1-jre
 
 ## 빌드 및 실행 방법
 ```shell
@@ -49,7 +52,7 @@ $ java -jar blog-search-application-0.0.1-SNAPSHOT.jar
 
 #### API
 
-- URL: http://localhost:8080/keyword-rank
+- URL: http://localhost:8080/blogs
 - Method: GET
 - Parameter
 
@@ -77,7 +80,7 @@ Content-Type: application/json;charset=UTF-8
       "createTime": "2023-02-26T14:23:16"
     },
     {
-    ...
+      ...
     }
   "currentPage": 1,
   "size": 10,
@@ -100,7 +103,7 @@ Content-Type: application/json;charset=UTF-8
 - 검색 순위는, 10초마다 갱신됩니다.
 
 #### API
-- URL: http://localhost:8080/api/search
+- URL: http://localhost:8080/keyword-rank
 - Method: GET
 - Response
 
@@ -123,7 +126,8 @@ Content-Type: application/json;charset=UTF-8
 - 로컬 캐싱을 활용하여 검색 순위를 10초간 캐싱합니다.
 
 
-
 ### 공통
 #### 구현 내용
 - 공통 에러 처리를 위해, ExceptionHandler를 사용합니다.
+- 인수 테스트 작성
+- JPA audit 사용
