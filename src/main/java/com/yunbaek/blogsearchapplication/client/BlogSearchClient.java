@@ -1,6 +1,6 @@
 package com.yunbaek.blogsearchapplication.client;
 
-import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 
 public interface BlogSearchClient {

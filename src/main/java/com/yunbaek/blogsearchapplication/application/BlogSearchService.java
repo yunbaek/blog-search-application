@@ -6,8 +6,8 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import com.yunbaek.blogsearchapplication.client.BlogSearchClient;
-import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.event.BlogSearchEvent;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 
 @Service

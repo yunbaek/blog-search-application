@@ -3,10 +3,10 @@ package com.yunbaek.blogsearchapplication.client.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.client.dto.kakao.Document;
 import com.yunbaek.blogsearchapplication.client.dto.kakao.KakaoBlogSearchResult;
 import com.yunbaek.blogsearchapplication.ui.dto.BlogResponse;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 
 @Mapper(componentModel = "spring")

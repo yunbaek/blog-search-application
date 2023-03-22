@@ -2,7 +2,7 @@ package com.yunbaek.blogsearchapplication.client;
 
 import org.springframework.cache.annotation.Cacheable;
 
-import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 
 public abstract class AbstractBlogSearchClient implements BlogSearchClient {

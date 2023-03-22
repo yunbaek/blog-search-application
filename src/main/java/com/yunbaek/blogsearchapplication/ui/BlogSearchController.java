@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yunbaek.blogsearchapplication.application.BlogSearchService;
 import com.yunbaek.blogsearchapplication.application.HitCountService;
-import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
+import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchRequest;
 import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 import com.yunbaek.blogsearchapplication.ui.dto.HitCountRankResponse;
 
