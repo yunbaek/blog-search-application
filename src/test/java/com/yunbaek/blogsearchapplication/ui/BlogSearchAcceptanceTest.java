@@ -1,4 +1,4 @@
-package com.yunbaek.blogsearchapplication.ui.util;
+package com.yunbaek.blogsearchapplication.ui;
 
 import static com.yunbaek.blogsearchapplication.ui.util.request.BlogRestUtils.*;
 import static org.assertj.core.api.Assertions.*;
@@ -9,13 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
 import com.yunbaek.blogsearchapplication.client.dto.Sort;
-import com.yunbaek.blogsearchapplication.ui.AcceptanceTest;
 
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 
 @DisplayName("블로그 검색 인수 테스트")
-class BlogSearchAbstractTest extends AcceptanceTest {
+class BlogSearchAcceptanceTest extends AcceptanceTest {
 
 	@BeforeEach
 	public void setUp() {
