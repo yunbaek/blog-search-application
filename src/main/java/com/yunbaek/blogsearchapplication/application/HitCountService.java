@@ -1,11 +1,15 @@
 package com.yunbaek.blogsearchapplication.application;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yunbaek.blogsearchapplication.application.lock.Lock;
 import com.yunbaek.blogsearchapplication.domain.HitCount;
 import com.yunbaek.blogsearchapplication.domain.HitCountRepository;
+import com.yunbaek.blogsearchapplication.ui.dto.HitCountRankResponse;
 
 @Service
 public class HitCountService {
@@ -26,4 +30,11 @@ public class HitCountService {
 			);
 	}
 
+	@Transactional(readOnly = true)
+	public List<HitCountRankResponse> getHitCountRank() {
+		 return hitCountRepository.findTop10ByOrderByCountDesc()
+			 .stream()
+			 .map(HitCountRankResponse::from)
+			 .collect(Collectors.toList());
+	}
 }
