@@ -31,12 +31,17 @@ public class CommonExceptionHandler {
 		return ResponseEntity.badRequest().body(error);
 	}
 
-	@ExceptionHandler({IllegalArgumentException.class, WebClientResponseException.class,
-		WebClientRequestException.class})
+	@ExceptionHandler({IllegalArgumentException.class, WebClientResponseException.class, WebClientRequestException.class})
 	public ResponseEntity<ApiError> handleDuplicateAndInvalidDataException(RuntimeException e) {
 		log.error("Bad Request -- message : " + e.getMessage());
 		ApiError error = ApiError.of(HttpStatus.BAD_REQUEST.value(), e.getMessage());
 		return ResponseEntity.badRequest().body(error);
 	}
 
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ApiError> handleException(Exception e) {
+		log.error("Internal Server Error -- message : " + e.getMessage());
+		ApiError error = ApiError.of(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+	}
 }
