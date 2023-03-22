@@ -22,22 +22,11 @@ spring:
         format_sql: true
     open-in-view: false
 
-  # to solve spring fox swagger bug with spring boot 2.6.0^
-  # https://stackoverflow.com/questions/70036953/spring-boot-2-6-0-spring-fox-3-failed-to-start-bean-documentationpluginsboo
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
 
 logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
-
-security:
-  jwt:
-    token:
-      secret-key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImpvYmlzLWFuZC12aWxsYWlucyIsImlhdCI6MTUxNjIzOTAyMn0.kNjVpsVSbH0kpjwHo8VY9la6P8cZ74PH4StTpkePogg
-      expire-length: 3600000
 
 application:
   name: blog-search
