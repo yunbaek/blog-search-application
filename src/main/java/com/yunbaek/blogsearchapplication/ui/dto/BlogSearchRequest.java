@@ -1,9 +1,12 @@
-package com.yunbaek.blogsearchapplication.client.dto;
+package com.yunbaek.blogsearchapplication.ui.dto;
 
 import java.util.Objects;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+
+import com.yunbaek.blogsearchapplication.client.dto.Sort;
 
 import lombok.Getter;
 
@@ -16,9 +19,11 @@ public class BlogSearchRequest {
 	private Sort sort;
 
 	@Min(value = 1, message = "페이지는 1 이상의 숫자를 입력해주세요.")
+	@Max(value = 50, message = "페이지는 50 이하의 숫자를 입력해주세요.")
 	private Integer page;
 
 	@Min(value = 1, message = "페이지당 검색 결과는 1 이상의 숫자를 입력해주세요.")
+	@Max(value = 50, message = "페이지당 검색 결과는 50 이하의 숫자를 입력해주세요.")
 	private Integer size;
 
 	public BlogSearchRequest(String query, Sort sort, Integer page, Integer size) {
