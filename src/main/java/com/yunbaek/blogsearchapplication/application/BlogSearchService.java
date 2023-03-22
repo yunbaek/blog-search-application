@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.yunbaek.blogsearchapplication.client.BlogSearchClient;
 import com.yunbaek.blogsearchapplication.client.dto.BlogSearchRequest;
+import com.yunbaek.blogsearchapplication.event.BlogSearchEvent;
 import com.yunbaek.blogsearchapplication.ui.dto.BlogSearchResponse;
 
 @Service
@@ -21,7 +22,7 @@ public class BlogSearchService {
 	}
 
 	public BlogSearchResponse search(BlogSearchRequest request) {
-		eventPublisher.publishEvent(request.getQuery());
+		eventPublisher.publishEvent(new BlogSearchEvent(BlogSearchService.class, request.getQuery()));
 		return clients.get(0).search(request);
 	}
 
@@ -30,5 +31,4 @@ public class BlogSearchService {
 			clients.get(i).setNextClient(clients.get(i + 1));
 		}
 	}
-
 }
