@@ -20,7 +20,6 @@ public class CacheConfig extends CachingConfigurerSupport {
 	public static final String BLOG_LIST_CACHE = "blogList";
 
 	public static final String KEYWORD_RANK_CACHE = "keywordRank";
-	public static final String KEYWORD_INSERT_CACHE = "keywordInsert";
 
 	@Override
 	@Bean
@@ -41,14 +40,7 @@ public class CacheConfig extends CachingConfigurerSupport {
 		 */
 		ConcurrentMapCache keywordRankCache = getConcurrentMapCache(KEYWORD_RANK_CACHE, 10, 1);
 
-		/*
-		 검색어 생성 캐시
-		 10초 동안 캐시 유지
-		 10개까지 캐시 유지
-		 */
-		ConcurrentMapCache keywordCreateCache = getConcurrentMapCache(KEYWORD_INSERT_CACHE, 10, 10);
-
-		cacheManager.setCaches(List.of(blogListCache, keywordRankCache, keywordCreateCache));
+		cacheManager.setCaches(List.of(blogListCache, keywordRankCache));
 
 		return cacheManager;
 	}
